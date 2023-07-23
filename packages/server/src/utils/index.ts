@@ -274,6 +274,29 @@ export const buildLangchain = async (
 }
 
 /**
+ * Clear memory
+ * @param {IReactFlowNode[]} reactFlowNodes
+ * @param {IComponentNodes} componentNodes
+ * @param {string} chatId
+ * @param {string} sessionId
+ */
+export const clearSessionMemory = async (
+    reactFlowNodes: IReactFlowNode[],
+    componentNodes: IComponentNodes,
+    chatId: string,
+    sessionId?: string
+) => {
+    for (const node of reactFlowNodes) {
+        if (node.data.category !== 'Memory') continue
+        const nodeInstanceFilePath = componentNodes[node.data.name].filePath as string
+        const nodeModule = await import(nodeInstanceFilePath)
+        const newNodeInstance = new nodeModule.nodeClass()
+        if (sessionId && node.data.inputs) node.data.inputs.sessionId = sessionId
+        if (newNodeInstance.clearSessionMemory) await newNodeInstance?.clearSessionMemory(node.data, { chatId })
+    }
+}
+
+/**
  * Get variable value from outputResponses.output
  * @param {string} paramValue
  * @param {IReactFlowNode[]} reactFlowNodes
@@ -705,7 +728,7 @@ export const isFlowValidForStream = (reactFlowNodes: IReactFlowNode[], endingNod
         isValidChainOrAgent = !blacklistChains.includes(endingNodeData.name)
     } else if (endingNodeData.category === 'Agents') {
         // Agent that are available to stream
-        const whitelistAgents = ['openAIFunctionAgent']
+        const whitelistAgents = ['openAIFunctionAgent', 'csvAgent', 'airtableAgent']
         isValidChainOrAgent = whitelistAgents.includes(endingNodeData.name)
     }
 

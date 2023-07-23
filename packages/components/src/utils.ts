@@ -320,7 +320,7 @@ export async function xmlScrape(currentURL: string, limit: number): Promise<stri
         }
 
         const contentType: string | null = resp.headers.get('content-type')
-        if ((contentType && !contentType.includes('application/xml')) || !contentType) {
+        if ((contentType && !contentType.includes('application/xml') && !contentType.includes('text/xml')) || !contentType) {
             if (process.env.DEBUG === 'true') console.error(`non xml response, content type: ${contentType}, on page: ${currentURL}`)
             return urls
         }
@@ -377,3 +377,17 @@ export const availableDependencies = [
     'typeorm',
     'weaviate-ts-client'
 ]
+
+export const getUserHome = (): string => {
+    let variableName = 'HOME'
+    if (process.platform === 'win32') {
+        variableName = 'USERPROFILE'
+    }
+
+    if (process.env[variableName] === undefined) {
+        // If for some reason the variable does not exist
+        // fall back to current folder
+        return process.cwd()
+    }
+    return process.env[variableName] as string
+}
