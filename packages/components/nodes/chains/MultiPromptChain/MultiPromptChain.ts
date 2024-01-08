@@ -2,7 +2,7 @@ import { BaseLanguageModel } from 'langchain/base_language'
 import { ICommonObject, INode, INodeData, INodeParams, PromptRetriever } from '../../../src/Interface'
 import { getBaseClasses } from '../../../src/utils'
 import { MultiPromptChain } from 'langchain/chains'
-import { ConsoleCallbackHandler, CustomChainHandler } from '../../../src/handler'
+import { ConsoleCallbackHandler, CustomChainHandler, additionalCallbacks } from '../../../src/handler'
 
 class MultiPromptChain_Chains implements INode {
     label: string
@@ -20,7 +20,7 @@ class MultiPromptChain_Chains implements INode {
         this.name = 'multiPromptChain'
         this.version = 1.0
         this.type = 'MultiPromptChain'
-        this.icon = 'chain.svg'
+        this.icon = 'prompt.svg'
         this.category = 'Chains'
         this.description = 'Chain automatically picks an appropriate prompt from multiple prompt templates'
         this.baseClasses = [this.type, ...getBaseClasses(MultiPromptChain)]
@@ -67,13 +67,14 @@ class MultiPromptChain_Chains implements INode {
         const obj = { input }
 
         const loggerHandler = new ConsoleCallbackHandler(options.logger)
+        const callbacks = await additionalCallbacks(nodeData, options)
 
         if (options.socketIO && options.socketIOClientId) {
             const handler = new CustomChainHandler(options.socketIO, options.socketIOClientId, 2)
-            const res = await chain.call(obj, [loggerHandler, handler])
+            const res = await chain.call(obj, [loggerHandler, handler, ...callbacks])
             return res?.text
         } else {
-            const res = await chain.call(obj, [loggerHandler])
+            const res = await chain.call(obj, [loggerHandler, ...callbacks])
             return res?.text
         }
     }

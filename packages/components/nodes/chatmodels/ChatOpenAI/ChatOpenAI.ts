@@ -1,6 +1,8 @@
 import { ICommonObject, INode, INodeData, INodeParams } from '../../../src/Interface'
 import { getBaseClasses, getCredentialData, getCredentialParam } from '../../../src/utils'
 import { ChatOpenAI, OpenAIChatInput } from 'langchain/chat_models/openai'
+import { BaseCache } from 'langchain/schema'
+import { BaseLLMParams } from 'langchain/llms/base'
 
 class ChatOpenAI_ChatModels implements INode {
     label: string
@@ -17,9 +19,9 @@ class ChatOpenAI_ChatModels implements INode {
     constructor() {
         this.label = 'ChatOpenAI'
         this.name = 'chatOpenAI'
-        this.version = 1.0
+        this.version = 2.0
         this.type = 'ChatOpenAI'
-        this.icon = 'openai.png'
+        this.icon = 'openai.svg'
         this.category = 'Chat Models'
         this.description = 'Wrapper around OpenAI large language models that use the Chat endpoint'
         this.baseClasses = [this.type, ...getBaseClasses(ChatOpenAI)]
@@ -31,6 +33,12 @@ class ChatOpenAI_ChatModels implements INode {
         }
         this.inputs = [
             {
+                label: 'Cache',
+                name: 'cache',
+                type: 'BaseCache',
+                optional: true
+            },
+            {
                 label: 'Model Name',
                 name: 'modelName',
                 type: 'options',
@@ -38,6 +46,14 @@ class ChatOpenAI_ChatModels implements INode {
                     {
                         label: 'gpt-4',
                         name: 'gpt-4'
+                    },
+                    {
+                        label: 'gpt-4-1106-preview',
+                        name: 'gpt-4-1106-preview'
+                    },
+                    {
+                        label: 'gpt-4-vision-preview',
+                        name: 'gpt-4-vision-preview'
                     },
                     {
                         label: 'gpt-4-0613',
@@ -54,6 +70,10 @@ class ChatOpenAI_ChatModels implements INode {
                     {
                         label: 'gpt-3.5-turbo',
                         name: 'gpt-3.5-turbo'
+                    },
+                    {
+                        label: 'gpt-3.5-turbo-1106',
+                        name: 'gpt-3.5-turbo-1106'
                     },
                     {
                         label: 'gpt-3.5-turbo-0613',
@@ -125,6 +145,13 @@ class ChatOpenAI_ChatModels implements INode {
                 type: 'string',
                 optional: true,
                 additionalParams: true
+            },
+            {
+                label: 'BaseOptions',
+                name: 'baseOptions',
+                type: 'json',
+                optional: true,
+                additionalParams: true
             }
         ]
     }
@@ -139,11 +166,14 @@ class ChatOpenAI_ChatModels implements INode {
         const timeout = nodeData.inputs?.timeout as string
         const streaming = nodeData.inputs?.streaming as boolean
         const basePath = nodeData.inputs?.basepath as string
+        const baseOptions = nodeData.inputs?.baseOptions
 
         const credentialData = await getCredentialData(nodeData.credential ?? '', options)
         const openAIApiKey = getCredentialParam('openAIApiKey', credentialData, nodeData)
 
-        const obj: Partial<OpenAIChatInput> & { openAIApiKey?: string } = {
+        const cache = nodeData.inputs?.cache as BaseCache
+
+        const obj: Partial<OpenAIChatInput> & BaseLLMParams & { openAIApiKey?: string } = {
             temperature: parseFloat(temperature),
             modelName,
             openAIApiKey,
@@ -155,9 +185,20 @@ class ChatOpenAI_ChatModels implements INode {
         if (frequencyPenalty) obj.frequencyPenalty = parseFloat(frequencyPenalty)
         if (presencePenalty) obj.presencePenalty = parseFloat(presencePenalty)
         if (timeout) obj.timeout = parseInt(timeout, 10)
+        if (cache) obj.cache = cache
 
+        let parsedBaseOptions: any | undefined = undefined
+
+        if (baseOptions) {
+            try {
+                parsedBaseOptions = typeof baseOptions === 'object' ? baseOptions : JSON.parse(baseOptions)
+            } catch (exception) {
+                throw new Error("Invalid JSON in the ChatOpenAI's BaseOptions: " + exception)
+            }
+        }
         const model = new ChatOpenAI(obj, {
-            basePath
+            basePath,
+            baseOptions: parsedBaseOptions
         })
         return model
     }

@@ -4,7 +4,7 @@ import { getBaseClasses } from '../../../src/utils'
 import { LoadPyodide, finalSystemPrompt, systemPrompt } from './core'
 import { LLMChain } from 'langchain/chains'
 import { BaseLanguageModel } from 'langchain/base_language'
-import { ConsoleCallbackHandler, CustomChainHandler } from '../../../src/handler'
+import { ConsoleCallbackHandler, CustomChainHandler, additionalCallbacks } from '../../../src/handler'
 
 class CSV_Agents implements INode {
     label: string
@@ -23,7 +23,7 @@ class CSV_Agents implements INode {
         this.version = 1.0
         this.type = 'AgentExecutor'
         this.category = 'Agents'
-        this.icon = 'csvagent.png'
+        this.icon = 'CSVagent.svg'
         this.description = 'Agent used to to answer queries on CSV data'
         this.baseClasses = [this.type, ...getBaseClasses(AgentExecutor)]
         this.inputs = [
@@ -37,6 +37,16 @@ class CSV_Agents implements INode {
                 label: 'Language Model',
                 name: 'model',
                 type: 'BaseLanguageModel'
+            },
+            {
+                label: 'System Message',
+                name: 'systemMessagePrompt',
+                type: 'string',
+                rows: 4,
+                additionalParams: true,
+                optional: true,
+                placeholder:
+                    'I want you to act as a document that I am having a conversation with. Your name is "AI Assistant". You will provide me with answers from the given info. If the answer is not included, say exactly "Hmm, I am not sure." and stop after that. Refuse to answer any question not about the info. Never break character.'
             }
         ]
     }
@@ -49,9 +59,11 @@ class CSV_Agents implements INode {
     async run(nodeData: INodeData, input: string, options: ICommonObject): Promise<string> {
         const csvFileBase64 = nodeData.inputs?.csvFile as string
         const model = nodeData.inputs?.model as BaseLanguageModel
+        const systemMessagePrompt = nodeData.inputs?.systemMessagePrompt as string
 
         const loggerHandler = new ConsoleCallbackHandler(options.logger)
         const handler = new CustomChainHandler(options.socketIO, options.socketIOClientId)
+        const callbacks = await additionalCallbacks(nodeData, options)
 
         let files: string[] = []
 
@@ -108,7 +120,7 @@ json.dumps(my_dict)`
                 dict: dataframeColDict,
                 question: input
             }
-            const res = await chain.call(inputs, [loggerHandler])
+            const res = await chain.call(inputs, [loggerHandler, ...callbacks])
             pythonCode = res?.text
         }
 
@@ -119,7 +131,7 @@ json.dumps(my_dict)`
                 const code = `import pandas as pd\n${pythonCode}`
                 finalResult = await pyodide.runPythonAsync(code)
             } catch (error) {
-                throw new Error(`Sorry, I'm unable to find answer for question: "${input}" using follwoing code: "${pythonCode}"`)
+                throw new Error(`Sorry, I'm unable to find answer for question: "${input}" using following code: "${pythonCode}"`)
             }
         }
 
@@ -127,7 +139,9 @@ json.dumps(my_dict)`
         if (finalResult) {
             const chain = new LLMChain({
                 llm: model,
-                prompt: PromptTemplate.fromTemplate(finalSystemPrompt),
+                prompt: PromptTemplate.fromTemplate(
+                    systemMessagePrompt ? `${systemMessagePrompt}\n${finalSystemPrompt}` : finalSystemPrompt
+                ),
                 verbose: process.env.DEBUG === 'true' ? true : false
             })
             const inputs = {
@@ -136,10 +150,10 @@ json.dumps(my_dict)`
             }
 
             if (options.socketIO && options.socketIOClientId) {
-                const result = await chain.call(inputs, [loggerHandler, handler])
+                const result = await chain.call(inputs, [loggerHandler, handler, ...callbacks])
                 return result?.text
             } else {
-                const result = await chain.call(inputs, [loggerHandler])
+                const result = await chain.call(inputs, [loggerHandler, ...callbacks])
                 return result?.text
             }
         }

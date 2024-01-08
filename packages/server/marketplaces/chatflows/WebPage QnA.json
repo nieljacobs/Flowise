@@ -1,174 +1,21 @@
 {
     "description": "Scrape web pages for QnA with long term memory Motorhead and return source documents",
+    "badge": "POPULAR",
     "nodes": [
         {
             "width": 300,
-            "height": 522,
-            "id": "chatOpenAI_0",
-            "position": {
-                "x": 1509.7110310286191,
-                "y": -171.0099374102956
-            },
-            "type": "customNode",
-            "data": {
-                "id": "chatOpenAI_0",
-                "label": "ChatOpenAI",
-                "name": "chatOpenAI",
-                "version": 1,
-                "type": "ChatOpenAI",
-                "baseClasses": ["ChatOpenAI", "BaseChatModel", "BaseLanguageModel"],
-                "category": "Chat Models",
-                "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
-                "inputParams": [
-                    {
-                        "label": "Connect Credential",
-                        "name": "credential",
-                        "type": "credential",
-                        "credentialNames": ["openAIApi"],
-                        "id": "chatOpenAI_0-input-credential-credential"
-                    },
-                    {
-                        "label": "Model Name",
-                        "name": "modelName",
-                        "type": "options",
-                        "options": [
-                            {
-                                "label": "gpt-4",
-                                "name": "gpt-4"
-                            },
-                            {
-                                "label": "gpt-4-0613",
-                                "name": "gpt-4-0613"
-                            },
-                            {
-                                "label": "gpt-4-32k",
-                                "name": "gpt-4-32k"
-                            },
-                            {
-                                "label": "gpt-4-32k-0613",
-                                "name": "gpt-4-32k-0613"
-                            },
-                            {
-                                "label": "gpt-3.5-turbo",
-                                "name": "gpt-3.5-turbo"
-                            },
-                            {
-                                "label": "gpt-3.5-turbo-0613",
-                                "name": "gpt-3.5-turbo-0613"
-                            },
-                            {
-                                "label": "gpt-3.5-turbo-16k",
-                                "name": "gpt-3.5-turbo-16k"
-                            },
-                            {
-                                "label": "gpt-3.5-turbo-16k-0613",
-                                "name": "gpt-3.5-turbo-16k-0613"
-                            }
-                        ],
-                        "default": "gpt-3.5-turbo",
-                        "optional": true,
-                        "id": "chatOpenAI_0-input-modelName-options"
-                    },
-                    {
-                        "label": "Temperature",
-                        "name": "temperature",
-                        "type": "number",
-                        "default": 0.9,
-                        "optional": true,
-                        "id": "chatOpenAI_0-input-temperature-number"
-                    },
-                    {
-                        "label": "Max Tokens",
-                        "name": "maxTokens",
-                        "type": "number",
-                        "optional": true,
-                        "additionalParams": true,
-                        "id": "chatOpenAI_0-input-maxTokens-number"
-                    },
-                    {
-                        "label": "Top Probability",
-                        "name": "topP",
-                        "type": "number",
-                        "optional": true,
-                        "additionalParams": true,
-                        "id": "chatOpenAI_0-input-topP-number"
-                    },
-                    {
-                        "label": "Frequency Penalty",
-                        "name": "frequencyPenalty",
-                        "type": "number",
-                        "optional": true,
-                        "additionalParams": true,
-                        "id": "chatOpenAI_0-input-frequencyPenalty-number"
-                    },
-                    {
-                        "label": "Presence Penalty",
-                        "name": "presencePenalty",
-                        "type": "number",
-                        "optional": true,
-                        "additionalParams": true,
-                        "id": "chatOpenAI_0-input-presencePenalty-number"
-                    },
-                    {
-                        "label": "Timeout",
-                        "name": "timeout",
-                        "type": "number",
-                        "optional": true,
-                        "additionalParams": true,
-                        "id": "chatOpenAI_0-input-timeout-number"
-                    },
-                    {
-                        "label": "BasePath",
-                        "name": "basepath",
-                        "type": "string",
-                        "optional": true,
-                        "additionalParams": true,
-                        "id": "chatOpenAI_0-input-basepath-string"
-                    }
-                ],
-                "inputAnchors": [],
-                "inputs": {
-                    "modelName": "gpt-3.5-turbo",
-                    "temperature": "0",
-                    "maxTokens": "",
-                    "topP": "",
-                    "frequencyPenalty": "",
-                    "presencePenalty": "",
-                    "timeout": "",
-                    "basepath": ""
-                },
-                "outputAnchors": [
-                    {
-                        "id": "chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel",
-                        "name": "chatOpenAI",
-                        "label": "ChatOpenAI",
-                        "type": "ChatOpenAI | BaseChatModel | BaseLanguageModel"
-                    }
-                ],
-                "outputs": {},
-                "selected": false
-            },
-            "positionAbsolute": {
-                "x": 1509.7110310286191,
-                "y": -171.0099374102956
-            },
-            "selected": false,
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 328,
+            "height": 329,
             "id": "openAIEmbeddings_0",
             "position": {
-                "x": 827.6835380475393,
-                "y": 253.8955254525015
+                "x": 825.9524798523752,
+                "y": 243.50917628151723
             },
             "type": "customNode",
             "data": {
                 "id": "openAIEmbeddings_0",
                 "label": "OpenAI Embeddings",
-                "name": "openAIEmbeddings",
                 "version": 1,
+                "name": "openAIEmbeddings",
                 "type": "OpenAIEmbeddings",
                 "baseClasses": ["OpenAIEmbeddings", "Embeddings"],
                 "category": "Embeddings",
@@ -234,215 +81,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 827.6835380475393,
-                "y": 253.8955254525015
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 554,
-            "id": "pineconeUpsert_0",
-            "position": {
-                "x": 1178.0855412625938,
-                "y": -1.6626550640073674
-            },
-            "type": "customNode",
-            "data": {
-                "id": "pineconeUpsert_0",
-                "label": "Pinecone Upsert Document",
-                "name": "pineconeUpsert",
-                "version": 1,
-                "type": "Pinecone",
-                "baseClasses": ["Pinecone", "VectorStoreRetriever", "BaseRetriever"],
-                "category": "Vector Stores",
-                "description": "Upsert documents to Pinecone",
-                "inputParams": [
-                    {
-                        "label": "Connect Credential",
-                        "name": "credential",
-                        "type": "credential",
-                        "credentialNames": ["pineconeApi"],
-                        "id": "pineconeUpsert_0-input-credential-credential"
-                    },
-                    {
-                        "label": "Pinecone Index",
-                        "name": "pineconeIndex",
-                        "type": "string",
-                        "id": "pineconeUpsert_0-input-pineconeIndex-string"
-                    },
-                    {
-                        "label": "Pinecone Namespace",
-                        "name": "pineconeNamespace",
-                        "type": "string",
-                        "placeholder": "my-first-namespace",
-                        "additionalParams": true,
-                        "optional": true,
-                        "id": "pineconeUpsert_0-input-pineconeNamespace-string"
-                    },
-                    {
-                        "label": "Top K",
-                        "name": "topK",
-                        "description": "Number of top results to fetch. Default to 4",
-                        "placeholder": "4",
-                        "type": "number",
-                        "additionalParams": true,
-                        "optional": true,
-                        "id": "pineconeUpsert_0-input-topK-number"
-                    }
-                ],
-                "inputAnchors": [
-                    {
-                        "label": "Document",
-                        "name": "document",
-                        "type": "Document",
-                        "list": true,
-                        "id": "pineconeUpsert_0-input-document-Document"
-                    },
-                    {
-                        "label": "Embeddings",
-                        "name": "embeddings",
-                        "type": "Embeddings",
-                        "id": "pineconeUpsert_0-input-embeddings-Embeddings"
-                    }
-                ],
-                "inputs": {
-                    "document": ["{{cheerioWebScraper_0.data.instance}}"],
-                    "embeddings": "{{openAIEmbeddings_0.data.instance}}",
-                    "pineconeIndex": "",
-                    "pineconeNamespace": "",
-                    "topK": ""
-                },
-                "outputAnchors": [
-                    {
-                        "name": "output",
-                        "label": "Output",
-                        "type": "options",
-                        "options": [
-                            {
-                                "id": "pineconeUpsert_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever",
-                                "name": "retriever",
-                                "label": "Pinecone Retriever",
-                                "type": "Pinecone | VectorStoreRetriever | BaseRetriever"
-                            },
-                            {
-                                "id": "pineconeUpsert_0-output-vectorStore-Pinecone|VectorStore",
-                                "name": "vectorStore",
-                                "label": "Pinecone Vector Store",
-                                "type": "Pinecone | VectorStore"
-                            }
-                        ],
-                        "default": "retriever"
-                    }
-                ],
-                "outputs": {
-                    "output": "retriever"
-                },
-                "selected": false
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1178.0855412625938,
-                "y": -1.6626550640073674
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 379,
-            "id": "cheerioWebScraper_0",
-            "position": {
-                "x": 829.4409518246235,
-                "y": -168.78678247276423
-            },
-            "type": "customNode",
-            "data": {
-                "id": "cheerioWebScraper_0",
-                "label": "Cheerio Web Scraper",
-                "name": "cheerioWebScraper",
-                "version": 1,
-                "type": "Document",
-                "baseClasses": ["Document"],
-                "category": "Document Loaders",
-                "description": "Load data from webpages",
-                "inputParams": [
-                    {
-                        "label": "URL",
-                        "name": "url",
-                        "type": "string",
-                        "id": "cheerioWebScraper_0-input-url-string"
-                    },
-                    {
-                        "label": "Get Relative Links Method",
-                        "name": "relativeLinksMethod",
-                        "type": "options",
-                        "description": "Select a method to retrieve relative links",
-                        "options": [
-                            {
-                                "label": "Web Crawl",
-                                "name": "webCrawl",
-                                "description": "Crawl relative links from HTML URL"
-                            },
-                            {
-                                "label": "Scrape XML Sitemap",
-                                "name": "scrapeXMLSitemap",
-                                "description": "Scrape relative links from XML sitemap URL"
-                            }
-                        ],
-                        "optional": true,
-                        "additionalParams": true,
-                        "id": "cheerioWebScraper_0-input-relativeLinksMethod-options"
-                    },
-                    {
-                        "label": "Get Relative Links Limit",
-                        "name": "limit",
-                        "type": "number",
-                        "optional": true,
-                        "additionalParams": true,
-                        "description": "Only used when \"Get Relative Links Method\" is selected. Set 0 to retrieve all relative links, default limit is 10.",
-                        "warning": "Retreiving all links might take long time, and all links will be upserted again if the flow's state changed (eg: different URL, chunk size, etc)",
-                        "id": "cheerioWebScraper_0-input-limit-number"
-                    },
-                    {
-                        "label": "Metadata",
-                        "name": "metadata",
-                        "type": "json",
-                        "optional": true,
-                        "additionalParams": true,
-                        "id": "cheerioWebScraper_0-input-metadata-json"
-                    }
-                ],
-                "inputAnchors": [
-                    {
-                        "label": "Text Splitter",
-                        "name": "textSplitter",
-                        "type": "TextSplitter",
-                        "optional": true,
-                        "id": "cheerioWebScraper_0-input-textSplitter-TextSplitter"
-                    }
-                ],
-                "inputs": {
-                    "url": "https://www.itsjane.com",
-                    "textSplitter": "{{htmlToMarkdownTextSplitter_0.data.instance}}",
-                    "relativeLinksMethod": "",
-                    "limit": "",
-                    "metadata": ""
-                },
-                "outputAnchors": [
-                    {
-                        "id": "cheerioWebScraper_0-output-cheerioWebScraper-Document",
-                        "name": "cheerioWebScraper",
-                        "label": "Document",
-                        "type": "Document"
-                    }
-                ],
-                "outputs": {},
-                "selected": false
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 829.4409518246235,
-                "y": -168.78678247276423
+                "x": 825.9524798523752,
+                "y": 243.50917628151723
             },
             "dragging": false
         },
@@ -451,15 +91,15 @@
             "height": 376,
             "id": "htmlToMarkdownTextSplitter_0",
             "position": {
-                "x": 443.00626484042334,
-                "y": 1.2942107707648631
+                "x": 465.86869036784685,
+                "y": -17.41141011530891
             },
             "type": "customNode",
             "data": {
                 "id": "htmlToMarkdownTextSplitter_0",
                 "label": "HtmlToMarkdown Text Splitter",
-                "name": "htmlToMarkdownTextSplitter",
                 "version": 1,
+                "name": "htmlToMarkdownTextSplitter",
                 "type": "HtmlToMarkdownTextSplitter",
                 "baseClasses": [
                     "HtmlToMarkdownTextSplitter",
@@ -489,7 +129,7 @@
                 ],
                 "inputAnchors": [],
                 "inputs": {
-                    "chunkSize": 1000,
+                    "chunkSize": "4000",
                     "chunkOverlap": ""
                 },
                 "outputAnchors": [
@@ -505,14 +145,14 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 443.00626484042334,
-                "y": 1.2942107707648631
+                "x": 465.86869036784685,
+                "y": -17.41141011530891
             },
             "dragging": false
         },
         {
             "width": 300,
-            "height": 479,
+            "height": 480,
             "id": "conversationalRetrievalQAChain_0",
             "position": {
                 "x": 1882.5543981868987,
@@ -522,8 +162,8 @@
             "data": {
                 "id": "conversationalRetrievalQAChain_0",
                 "label": "Conversational Retrieval QA Chain",
-                "name": "conversationalRetrievalQAChain",
                 "version": 1,
+                "name": "conversationalRetrievalQAChain",
                 "type": "ConversationalRetrievalQAChain",
                 "baseClasses": ["ConversationalRetrievalQAChain", "BaseChain"],
                 "category": "Chains",
@@ -596,10 +236,10 @@
                 ],
                 "inputs": {
                     "model": "{{chatOpenAI_0.data.instance}}",
-                    "vectorStoreRetriever": "{{pineconeUpsert_0.data.instance}}",
-                    "memory": "{{motorheadMemory_0.data.instance}}",
+                    "vectorStoreRetriever": "{{pinecone_0.data.instance}}",
+                    "memory": "{{RedisBackedChatMemory_0.data.instance}}",
                     "returnSourceDocuments": true,
-                    "systemMessagePrompt": "",
+                    "systemMessagePrompt": "I want you to act as a document that I am having a conversation with. Your name is \"AI Assistant\". You will provide me with answers from the given context. If the answer is not included, say exactly \"Hmm, I am not sure.\" and stop after that. Do not make up any information that is not in the context. Refuse to answer any question not about the info. Never break character.",
                     "chainOption": ""
                 },
                 "outputAnchors": [
@@ -622,71 +262,100 @@
         },
         {
             "width": 300,
-            "height": 426,
-            "id": "motorheadMemory_0",
+            "height": 380,
+            "id": "cheerioWebScraper_0",
             "position": {
-                "x": 1515.4202055109095,
-                "y": 539.7912360964175
+                "x": 825.0624964329904,
+                "y": -183.65456143262517
             },
             "type": "customNode",
             "data": {
-                "id": "motorheadMemory_0",
-                "label": "Motorhead Memory",
-                "name": "motorheadMemory",
-                "version": 1,
-                "type": "MotorheadMemory",
-                "baseClasses": ["MotorheadMemory", "BaseChatMemory", "BaseMemory"],
-                "category": "Memory",
-                "description": "Use Motorhead Memory to store chat conversations",
+                "id": "cheerioWebScraper_0",
+                "label": "Cheerio Web Scraper",
+                "version": 1.1,
+                "name": "cheerioWebScraper",
+                "type": "Document",
+                "baseClasses": ["Document"],
+                "category": "Document Loaders",
+                "description": "Load data from webpages",
                 "inputParams": [
                     {
-                        "label": "Connect Credential",
-                        "name": "credential",
-                        "type": "credential",
-                        "optional": true,
-                        "description": "Only needed when using hosted solution - https://getmetal.io",
-                        "credentialNames": ["motorheadMemoryApi"],
-                        "id": "motorheadMemory_0-input-credential-credential"
+                        "label": "URL",
+                        "name": "url",
+                        "type": "string",
+                        "id": "cheerioWebScraper_0-input-url-string"
                     },
                     {
-                        "label": "Base URL",
-                        "name": "baseURL",
-                        "type": "string",
+                        "label": "Get Relative Links Method",
+                        "name": "relativeLinksMethod",
+                        "type": "options",
+                        "description": "Select a method to retrieve relative links",
+                        "options": [
+                            {
+                                "label": "Web Crawl",
+                                "name": "webCrawl",
+                                "description": "Crawl relative links from HTML URL"
+                            },
+                            {
+                                "label": "Scrape XML Sitemap",
+                                "name": "scrapeXMLSitemap",
+                                "description": "Scrape relative links from XML sitemap URL"
+                            }
+                        ],
                         "optional": true,
-                        "description": "To use the online version, leave the URL blank. More details at https://getmetal.io.",
-                        "id": "motorheadMemory_0-input-baseURL-string"
-                    },
-                    {
-                        "label": "Session Id",
-                        "name": "sessionId",
-                        "type": "string",
-                        "description": "if empty, chatId will be used automatically",
-                        "default": "",
                         "additionalParams": true,
-                        "optional": true,
-                        "id": "motorheadMemory_0-input-sessionId-string"
+                        "id": "cheerioWebScraper_0-input-relativeLinksMethod-options"
                     },
                     {
-                        "label": "Memory Key",
-                        "name": "memoryKey",
-                        "type": "string",
-                        "default": "chat_history",
+                        "label": "Get Relative Links Limit",
+                        "name": "limit",
+                        "type": "number",
+                        "optional": true,
                         "additionalParams": true,
-                        "id": "motorheadMemory_0-input-memoryKey-string"
+                        "description": "Only used when \"Get Relative Links Method\" is selected. Set 0 to retrieve all relative links, default limit is 10.",
+                        "warning": "Retrieving all links might take long time, and all links will be upserted again if the flow's state changed (eg: different URL, chunk size, etc)",
+                        "id": "cheerioWebScraper_0-input-limit-number"
+                    },
+                    {
+                        "label": "Selector (CSS)",
+                        "name": "selector",
+                        "type": "string",
+                        "description": "Specify a CSS selector to select the content to be extracted",
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "cheerioWebScraper_0-input-selector-string"
+                    },
+                    {
+                        "label": "Metadata",
+                        "name": "metadata",
+                        "type": "json",
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "cheerioWebScraper_0-input-metadata-json"
                     }
                 ],
-                "inputAnchors": [],
+                "inputAnchors": [
+                    {
+                        "label": "Text Splitter",
+                        "name": "textSplitter",
+                        "type": "TextSplitter",
+                        "optional": true,
+                        "id": "cheerioWebScraper_0-input-textSplitter-TextSplitter"
+                    }
+                ],
                 "inputs": {
-                    "baseURL": "",
-                    "sessionId": "",
-                    "memoryKey": "chat_history"
+                    "url": "https://flowiseai.com/",
+                    "textSplitter": "{{htmlToMarkdownTextSplitter_0.data.instance}}",
+                    "relativeLinksMethod": "",
+                    "limit": "",
+                    "metadata": ""
                 },
                 "outputAnchors": [
                     {
-                        "id": "motorheadMemory_0-output-motorheadMemory-MotorheadMemory|BaseChatMemory|BaseMemory",
-                        "name": "motorheadMemory",
-                        "label": "MotorheadMemory",
-                        "type": "MotorheadMemory | BaseChatMemory | BaseMemory"
+                        "id": "cheerioWebScraper_0-output-cheerioWebScraper-Document",
+                        "name": "cheerioWebScraper",
+                        "label": "Document",
+                        "type": "Document"
                     }
                 ],
                 "outputs": {},
@@ -694,35 +363,400 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1515.4202055109095,
-                "y": 539.7912360964175
+                "x": 825.0624964329904,
+                "y": -183.65456143262517
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 574,
+            "id": "chatOpenAI_0",
+            "position": {
+                "x": 1530.2074695018944,
+                "y": -247.5543013399219
+            },
+            "type": "customNode",
+            "data": {
+                "id": "chatOpenAI_0",
+                "label": "ChatOpenAI",
+                "version": 2,
+                "name": "chatOpenAI",
+                "type": "ChatOpenAI",
+                "baseClasses": ["ChatOpenAI", "BaseChatModel", "BaseLanguageModel", "Runnable"],
+                "category": "Chat Models",
+                "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
+                "inputParams": [
+                    {
+                        "label": "Connect Credential",
+                        "name": "credential",
+                        "type": "credential",
+                        "credentialNames": ["openAIApi"],
+                        "id": "chatOpenAI_0-input-credential-credential"
+                    },
+                    {
+                        "label": "Model Name",
+                        "name": "modelName",
+                        "type": "options",
+                        "options": [
+                            {
+                                "label": "gpt-4",
+                                "name": "gpt-4"
+                            },
+                            {
+                                "label": "gpt-4-1106-preview",
+                                "name": "gpt-4-1106-preview"
+                            },
+                            {
+                                "label": "gpt-4-vision-preview",
+                                "name": "gpt-4-vision-preview"
+                            },
+                            {
+                                "label": "gpt-4-0613",
+                                "name": "gpt-4-0613"
+                            },
+                            {
+                                "label": "gpt-4-32k",
+                                "name": "gpt-4-32k"
+                            },
+                            {
+                                "label": "gpt-4-32k-0613",
+                                "name": "gpt-4-32k-0613"
+                            },
+                            {
+                                "label": "gpt-3.5-turbo",
+                                "name": "gpt-3.5-turbo"
+                            },
+                            {
+                                "label": "gpt-3.5-turbo-1106",
+                                "name": "gpt-3.5-turbo-1106"
+                            },
+                            {
+                                "label": "gpt-3.5-turbo-0613",
+                                "name": "gpt-3.5-turbo-0613"
+                            },
+                            {
+                                "label": "gpt-3.5-turbo-16k",
+                                "name": "gpt-3.5-turbo-16k"
+                            },
+                            {
+                                "label": "gpt-3.5-turbo-16k-0613",
+                                "name": "gpt-3.5-turbo-16k-0613"
+                            }
+                        ],
+                        "default": "gpt-3.5-turbo",
+                        "optional": true,
+                        "id": "chatOpenAI_0-input-modelName-options"
+                    },
+                    {
+                        "label": "Temperature",
+                        "name": "temperature",
+                        "type": "number",
+                        "step": 0.1,
+                        "default": 0.9,
+                        "optional": true,
+                        "id": "chatOpenAI_0-input-temperature-number"
+                    },
+                    {
+                        "label": "Max Tokens",
+                        "name": "maxTokens",
+                        "type": "number",
+                        "step": 1,
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "chatOpenAI_0-input-maxTokens-number"
+                    },
+                    {
+                        "label": "Top Probability",
+                        "name": "topP",
+                        "type": "number",
+                        "step": 0.1,
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "chatOpenAI_0-input-topP-number"
+                    },
+                    {
+                        "label": "Frequency Penalty",
+                        "name": "frequencyPenalty",
+                        "type": "number",
+                        "step": 0.1,
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "chatOpenAI_0-input-frequencyPenalty-number"
+                    },
+                    {
+                        "label": "Presence Penalty",
+                        "name": "presencePenalty",
+                        "type": "number",
+                        "step": 0.1,
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "chatOpenAI_0-input-presencePenalty-number"
+                    },
+                    {
+                        "label": "Timeout",
+                        "name": "timeout",
+                        "type": "number",
+                        "step": 1,
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "chatOpenAI_0-input-timeout-number"
+                    },
+                    {
+                        "label": "BasePath",
+                        "name": "basepath",
+                        "type": "string",
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "chatOpenAI_0-input-basepath-string"
+                    },
+                    {
+                        "label": "BaseOptions",
+                        "name": "baseOptions",
+                        "type": "json",
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "chatOpenAI_0-input-baseOptions-json"
+                    }
+                ],
+                "inputAnchors": [
+                    {
+                        "label": "Cache",
+                        "name": "cache",
+                        "type": "BaseCache",
+                        "optional": true,
+                        "id": "chatOpenAI_0-input-cache-BaseCache"
+                    }
+                ],
+                "inputs": {
+                    "cache": "",
+                    "modelName": "gpt-3.5-turbo",
+                    "temperature": 0.9,
+                    "maxTokens": "",
+                    "topP": "",
+                    "frequencyPenalty": "",
+                    "presencePenalty": "",
+                    "timeout": "",
+                    "basepath": "",
+                    "baseOptions": ""
+                },
+                "outputAnchors": [
+                    {
+                        "id": "chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable",
+                        "name": "chatOpenAI",
+                        "label": "ChatOpenAI",
+                        "type": "ChatOpenAI | BaseChatModel | BaseLanguageModel | Runnable"
+                    }
+                ],
+                "outputs": {},
+                "selected": false
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1530.2074695018944,
+                "y": -247.5543013399219
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 329,
+            "id": "RedisBackedChatMemory_0",
+            "position": {
+                "x": 1203.0374706158896,
+                "y": 420.6341619933999
+            },
+            "type": "customNode",
+            "data": {
+                "id": "RedisBackedChatMemory_0",
+                "label": "Redis-Backed Chat Memory",
+                "version": 2,
+                "name": "RedisBackedChatMemory",
+                "type": "RedisBackedChatMemory",
+                "baseClasses": ["RedisBackedChatMemory", "BaseChatMemory", "BaseMemory"],
+                "category": "Memory",
+                "description": "Summarizes the conversation and stores the memory in Redis server",
+                "inputParams": [
+                    {
+                        "label": "Connect Credential",
+                        "name": "credential",
+                        "type": "credential",
+                        "optional": true,
+                        "credentialNames": ["redisCacheApi", "redisCacheUrlApi"],
+                        "id": "RedisBackedChatMemory_0-input-credential-credential"
+                    },
+                    {
+                        "label": "Session Id",
+                        "name": "sessionId",
+                        "type": "string",
+                        "description": "If not specified, the first CHAT_MESSAGE_ID will be used as sessionId",
+                        "default": "",
+                        "additionalParams": true,
+                        "optional": true,
+                        "id": "RedisBackedChatMemory_0-input-sessionId-string"
+                    },
+                    {
+                        "label": "Session Timeouts",
+                        "name": "sessionTTL",
+                        "type": "number",
+                        "description": "Omit this parameter to make sessions never expire",
+                        "additionalParams": true,
+                        "optional": true,
+                        "id": "RedisBackedChatMemory_0-input-sessionTTL-number"
+                    },
+                    {
+                        "label": "Memory Key",
+                        "name": "memoryKey",
+                        "type": "string",
+                        "default": "chat_history",
+                        "additionalParams": true,
+                        "id": "RedisBackedChatMemory_0-input-memoryKey-string"
+                    }
+                ],
+                "inputAnchors": [],
+                "inputs": {
+                    "sessionId": "",
+                    "sessionTTL": "",
+                    "memoryKey": "chat_history"
+                },
+                "outputAnchors": [
+                    {
+                        "id": "RedisBackedChatMemory_0-output-RedisBackedChatMemory-RedisBackedChatMemory|BaseChatMemory|BaseMemory",
+                        "name": "RedisBackedChatMemory",
+                        "label": "RedisBackedChatMemory",
+                        "type": "RedisBackedChatMemory | BaseChatMemory | BaseMemory"
+                    }
+                ],
+                "outputs": {},
+                "selected": false
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1203.0374706158896,
+                "y": 420.6341619933999
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 555,
+            "id": "pinecone_0",
+            "position": {
+                "x": 1194.3821796400694,
+                "y": -162.7324497768837
+            },
+            "type": "customNode",
+            "data": {
+                "id": "pinecone_0",
+                "label": "Pinecone",
+                "version": 1,
+                "name": "pinecone",
+                "type": "Pinecone",
+                "baseClasses": ["Pinecone", "VectorStoreRetriever", "BaseRetriever"],
+                "category": "Vector Stores",
+                "description": "Upsert embedded data and perform similarity search upon query using Pinecone, a leading fully managed hosted vector database",
+                "inputParams": [
+                    {
+                        "label": "Connect Credential",
+                        "name": "credential",
+                        "type": "credential",
+                        "credentialNames": ["pineconeApi"],
+                        "id": "pinecone_0-input-credential-credential"
+                    },
+                    {
+                        "label": "Pinecone Index",
+                        "name": "pineconeIndex",
+                        "type": "string",
+                        "id": "pinecone_0-input-pineconeIndex-string"
+                    },
+                    {
+                        "label": "Pinecone Namespace",
+                        "name": "pineconeNamespace",
+                        "type": "string",
+                        "placeholder": "my-first-namespace",
+                        "additionalParams": true,
+                        "optional": true,
+                        "id": "pinecone_0-input-pineconeNamespace-string"
+                    },
+                    {
+                        "label": "Pinecone Metadata Filter",
+                        "name": "pineconeMetadataFilter",
+                        "type": "json",
+                        "optional": true,
+                        "additionalParams": true,
+                        "id": "pinecone_0-input-pineconeMetadataFilter-json"
+                    },
+                    {
+                        "label": "Top K",
+                        "name": "topK",
+                        "description": "Number of top results to fetch. Default to 4",
+                        "placeholder": "4",
+                        "type": "number",
+                        "additionalParams": true,
+                        "optional": true,
+                        "id": "pinecone_0-input-topK-number"
+                    }
+                ],
+                "inputAnchors": [
+                    {
+                        "label": "Document",
+                        "name": "document",
+                        "type": "Document",
+                        "list": true,
+                        "optional": true,
+                        "id": "pinecone_0-input-document-Document"
+                    },
+                    {
+                        "label": "Embeddings",
+                        "name": "embeddings",
+                        "type": "Embeddings",
+                        "id": "pinecone_0-input-embeddings-Embeddings"
+                    }
+                ],
+                "inputs": {
+                    "document": ["{{cheerioWebScraper_0.data.instance}}"],
+                    "embeddings": "{{openAIEmbeddings_0.data.instance}}",
+                    "pineconeIndex": "",
+                    "pineconeNamespace": "",
+                    "pineconeMetadataFilter": "",
+                    "topK": ""
+                },
+                "outputAnchors": [
+                    {
+                        "name": "output",
+                        "label": "Output",
+                        "type": "options",
+                        "options": [
+                            {
+                                "id": "pinecone_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever",
+                                "name": "retriever",
+                                "label": "Pinecone Retriever",
+                                "type": "Pinecone | VectorStoreRetriever | BaseRetriever"
+                            },
+                            {
+                                "id": "pinecone_0-output-vectorStore-Pinecone|VectorStore",
+                                "name": "vectorStore",
+                                "label": "Pinecone Vector Store",
+                                "type": "Pinecone | VectorStore"
+                            }
+                        ],
+                        "default": "retriever"
+                    }
+                ],
+                "outputs": {
+                    "output": "retriever"
+                },
+                "selected": false
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1194.3821796400694,
+                "y": -162.7324497768837
             },
             "dragging": false
         }
     ],
     "edges": [
-        {
-            "source": "openAIEmbeddings_0",
-            "sourceHandle": "openAIEmbeddings_0-output-openAIEmbeddings-OpenAIEmbeddings|Embeddings",
-            "target": "pineconeUpsert_0",
-            "targetHandle": "pineconeUpsert_0-input-embeddings-Embeddings",
-            "type": "buttonedge",
-            "id": "openAIEmbeddings_0-openAIEmbeddings_0-output-openAIEmbeddings-OpenAIEmbeddings|Embeddings-pineconeUpsert_0-pineconeUpsert_0-input-embeddings-Embeddings",
-            "data": {
-                "label": ""
-            }
-        },
-        {
-            "source": "cheerioWebScraper_0",
-            "sourceHandle": "cheerioWebScraper_0-output-cheerioWebScraper-Document",
-            "target": "pineconeUpsert_0",
-            "targetHandle": "pineconeUpsert_0-input-document-Document",
-            "type": "buttonedge",
-            "id": "cheerioWebScraper_0-cheerioWebScraper_0-output-cheerioWebScraper-Document-pineconeUpsert_0-pineconeUpsert_0-input-document-Document",
-            "data": {
-                "label": ""
-            }
-        },
         {
             "source": "htmlToMarkdownTextSplitter_0",
             "sourceHandle": "htmlToMarkdownTextSplitter_0-output-htmlToMarkdownTextSplitter-HtmlToMarkdownTextSplitter|MarkdownTextSplitter|RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer",
@@ -736,33 +770,55 @@
         },
         {
             "source": "chatOpenAI_0",
-            "sourceHandle": "chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel",
+            "sourceHandle": "chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable",
             "target": "conversationalRetrievalQAChain_0",
             "targetHandle": "conversationalRetrievalQAChain_0-input-model-BaseLanguageModel",
             "type": "buttonedge",
-            "id": "chatOpenAI_0-chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-model-BaseLanguageModel",
+            "id": "chatOpenAI_0-chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-model-BaseLanguageModel",
             "data": {
                 "label": ""
             }
         },
         {
-            "source": "pineconeUpsert_0",
-            "sourceHandle": "pineconeUpsert_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever",
-            "target": "conversationalRetrievalQAChain_0",
-            "targetHandle": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
-            "type": "buttonedge",
-            "id": "pineconeUpsert_0-pineconeUpsert_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
-            "data": {
-                "label": ""
-            }
-        },
-        {
-            "source": "motorheadMemory_0",
-            "sourceHandle": "motorheadMemory_0-output-motorheadMemory-MotorheadMemory|BaseChatMemory|BaseMemory",
+            "source": "RedisBackedChatMemory_0",
+            "sourceHandle": "RedisBackedChatMemory_0-output-RedisBackedChatMemory-RedisBackedChatMemory|BaseChatMemory|BaseMemory",
             "target": "conversationalRetrievalQAChain_0",
             "targetHandle": "conversationalRetrievalQAChain_0-input-memory-BaseMemory",
             "type": "buttonedge",
-            "id": "motorheadMemory_0-motorheadMemory_0-output-motorheadMemory-MotorheadMemory|BaseChatMemory|BaseMemory-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-memory-BaseMemory",
+            "id": "RedisBackedChatMemory_0-RedisBackedChatMemory_0-output-RedisBackedChatMemory-RedisBackedChatMemory|BaseChatMemory|BaseMemory-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-memory-BaseMemory",
+            "data": {
+                "label": ""
+            }
+        },
+        {
+            "source": "cheerioWebScraper_0",
+            "sourceHandle": "cheerioWebScraper_0-output-cheerioWebScraper-Document",
+            "target": "pinecone_0",
+            "targetHandle": "pinecone_0-input-document-Document",
+            "type": "buttonedge",
+            "id": "cheerioWebScraper_0-cheerioWebScraper_0-output-cheerioWebScraper-Document-pinecone_0-pinecone_0-input-document-Document",
+            "data": {
+                "label": ""
+            }
+        },
+        {
+            "source": "openAIEmbeddings_0",
+            "sourceHandle": "openAIEmbeddings_0-output-openAIEmbeddings-OpenAIEmbeddings|Embeddings",
+            "target": "pinecone_0",
+            "targetHandle": "pinecone_0-input-embeddings-Embeddings",
+            "type": "buttonedge",
+            "id": "openAIEmbeddings_0-openAIEmbeddings_0-output-openAIEmbeddings-OpenAIEmbeddings|Embeddings-pinecone_0-pinecone_0-input-embeddings-Embeddings",
+            "data": {
+                "label": ""
+            }
+        },
+        {
+            "source": "pinecone_0",
+            "sourceHandle": "pinecone_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever",
+            "target": "conversationalRetrievalQAChain_0",
+            "targetHandle": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
+            "type": "buttonedge",
+            "id": "pinecone_0-pinecone_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
             "data": {
                 "label": ""
             }
