@@ -10,7 +10,7 @@
 [![GitHub星图](https://img.shields.io/github/stars/FlowiseAI/Flowise?style=social)](https://star-history.com/#FlowiseAI/Flowise)
 [![GitHub分支](https://img.shields.io/github/forks/FlowiseAI/Flowise?style=social)](https://github.com/FlowiseAI/Flowise/fork)
 
-[English](../README.md) | 中文 | [日本語](./README-JA.md) | [한국어](./README-KR.md)
+[English](../README.md) | 簡體中文 | [日本語](./README-JA.md) | [한국어](./README-KR.md)
 
 <h3>拖放界面构建定制化的LLM流程</h3>
 <a href="https://github.com/FlowiseAI/Flowise">
@@ -44,9 +44,9 @@
 
 1. 进入项目根目录下的 `docker` 文件夹
 2. 创建 `.env` 文件并指定 `PORT`（参考 `.env.example`）
-3. 运行 `docker-compose up -d`
+3. 运行 `docker compose up -d`
 4. 打开 [http://localhost:3000](http://localhost:3000)
-5. 可以通过 `docker-compose stop` 停止容器
+5. 可以通过 `docker compose stop` 停止容器
 
 ### Docker 镜像
 
@@ -180,9 +180,9 @@ Flowise 支持不同的环境变量来配置您的实例。您可以在 `package
 
       </details>
 
-## 💻 云托管
+## ☁️ 云托管
 
-即将推出
+[开始使用云托管](https://flowiseai.com/)
 
 ## 🙋 支持
 
