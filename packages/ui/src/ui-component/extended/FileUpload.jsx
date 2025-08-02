@@ -5,7 +5,7 @@ import { enqueueSnackbar as enqueueSnackbarAction, closeSnackbar as closeSnackba
 import parser from 'html-react-parser'
 
 // material-ui
-import { Button, Box, Typography } from '@mui/material'
+import { Button, Box, Typography, FormControl, RadioGroup, FormControlLabel, Radio } from '@mui/material'
 import { IconX, IconBulb } from '@tabler/icons-react'
 
 // Project import
@@ -23,15 +23,20 @@ const message = `Uploaded files will be parsed as strings and sent to the LLM. I
 Refer <a href='https://docs.flowiseai.com/using-flowise/uploads#files' target='_blank'>docs</a> for more details.`
 
 const availableFileTypes = [
-    { name: 'CSS', ext: 'text/css' },
-    { name: 'CSV', ext: 'text/csv' },
-    { name: 'HTML', ext: 'text/html' },
-    { name: 'JSON', ext: 'application/json' },
-    { name: 'Markdown', ext: 'text/markdown' },
-    { name: 'PDF', ext: 'application/pdf' },
-    { name: 'SQL', ext: 'application/sql' },
-    { name: 'Text File', ext: 'text/plain' },
-    { name: 'XML', ext: 'application/xml' }
+    { name: 'CSS', ext: 'text/css', extension: '.css' },
+    { name: 'CSV', ext: 'text/csv', extension: '.csv' },
+    { name: 'HTML', ext: 'text/html', extension: '.html' },
+    { name: 'JSON', ext: 'application/json', extension: '.json' },
+    { name: 'Markdown', ext: 'text/markdown', extension: '.md' },
+    { name: 'YAML', ext: 'application/x-yaml', extension: '.yaml' },
+    { name: 'PDF', ext: 'application/pdf', extension: '.pdf' },
+    { name: 'SQL', ext: 'application/sql', extension: '.sql' },
+    { name: 'Text File', ext: 'text/plain', extension: '.txt' },
+    { name: 'XML', ext: 'application/xml', extension: '.xml' },
+    { name: 'DOC', ext: 'application/msword', extension: '.doc' },
+    { name: 'DOCX', ext: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', extension: '.docx' },
+    { name: 'XLSX', ext: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', extension: '.xlsx' },
+    { name: 'PPTX', ext: 'application/vnd.openxmlformats-officedocument.presentationml.presentation', extension: '.pptx' }
 ]
 
 const FileUpload = ({ dialogProps }) => {
@@ -45,6 +50,8 @@ const FileUpload = ({ dialogProps }) => {
     const [fullFileUpload, setFullFileUpload] = useState(false)
     const [allowedFileTypes, setAllowedFileTypes] = useState([])
     const [chatbotConfig, setChatbotConfig] = useState({})
+    const [pdfUsage, setPdfUsage] = useState('perPage')
+    const [pdfLegacyBuild, setPdfLegacyBuild] = useState(false)
 
     const handleChange = (value) => {
         setFullFileUpload(value)
@@ -59,11 +66,23 @@ const FileUpload = ({ dialogProps }) => {
         }
     }
 
+    const handlePdfUsageChange = (event) => {
+        setPdfUsage(event.target.value)
+    }
+
+    const handleLegacyBuildChange = (value) => {
+        setPdfLegacyBuild(value)
+    }
+
     const onSave = async () => {
         try {
             const value = {
                 status: fullFileUpload,
-                allowedUploadFileTypes: allowedFileTypes.join(',')
+                allowedUploadFileTypes: allowedFileTypes.join(','),
+                pdfFile: {
+                    usage: pdfUsage,
+                    legacyBuild: pdfLegacyBuild
+                }
             }
             chatbotConfig.fullFileUpload = value
 
@@ -119,6 +138,14 @@ const FileUpload = ({ dialogProps }) => {
                     if (chatbotConfig.fullFileUpload?.allowedUploadFileTypes) {
                         const allowedFileTypes = chatbotConfig.fullFileUpload.allowedUploadFileTypes.split(',')
                         setAllowedFileTypes(allowedFileTypes)
+                    }
+                    if (chatbotConfig.fullFileUpload?.pdfFile) {
+                        if (chatbotConfig.fullFileUpload.pdfFile.usage) {
+                            setPdfUsage(chatbotConfig.fullFileUpload.pdfFile.usage)
+                        }
+                        if (chatbotConfig.fullFileUpload.pdfFile.legacyBuild !== undefined) {
+                            setPdfLegacyBuild(chatbotConfig.fullFileUpload.pdfFile.legacyBuild)
+                        }
                     }
                 } catch (e) {
                     setChatbotConfig({})
@@ -197,11 +224,46 @@ const FileUpload = ({ dialogProps }) => {
                             onChange={handleAllowedFileTypesChange}
                         />
                         <label htmlFor={fileType.ext} style={{ marginLeft: 10 }}>
-                            {fileType.name} ({fileType.ext})
+                            {fileType.name} ({fileType.extension})
                         </label>
                     </div>
                 ))}
             </div>
+
+            {allowedFileTypes.includes('application/pdf') && fullFileUpload && (
+                <Box
+                    sx={{
+                        borderRadius: 2,
+                        border: '1px solid #e0e0e0',
+                        backgroundColor: '#fafafa',
+                        padding: 3,
+                        marginBottom: 3,
+                        marginTop: 2
+                    }}
+                >
+                    <Typography sx={{ fontSize: 16, fontWeight: 600, marginBottom: 2, color: '#424242' }}>PDF Configuration</Typography>
+
+                    <Box>
+                        <Typography sx={{ fontSize: 14, fontWeight: 500, marginBottom: 1 }}>PDF Usage</Typography>
+                        <FormControl disabled={!fullFileUpload}>
+                            <RadioGroup name='pdf-usage' value={pdfUsage} onChange={handlePdfUsageChange}>
+                                <FormControlLabel value='perPage' control={<Radio />} label='One document per page' />
+                                <FormControlLabel value='perFile' control={<Radio />} label='One document per file' />
+                            </RadioGroup>
+                        </FormControl>
+                    </Box>
+
+                    <Box>
+                        <SwitchInput
+                            label='Use Legacy Build (for PDF compatibility issues)'
+                            onChange={handleLegacyBuildChange}
+                            value={pdfLegacyBuild}
+                            disabled={!fullFileUpload}
+                        />
+                    </Box>
+                </Box>
+            )}
+
             <StyledButton style={{ marginBottom: 10, marginTop: 20 }} variant='contained' onClick={onSave}>
                 Save
             </StyledButton>
